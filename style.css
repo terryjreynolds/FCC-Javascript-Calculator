@@ -1,0 +1,388 @@
+body{
+
+	background: #202123;
+	
+}
+	#calculator_frame {
+  	
+	  height: 600px;
+	  width: 320px;
+	  background: linear-gradient(135deg, #45484d 3%,#45484d 11%,#000000 17%,#000000 69%,#45484d 74%,#000000 76%,#000000 76%,#45484d 85%,#000000 89%,#45484d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	  box-shadow: 10px 10px 20px  #000407;
+	  
+	  border: medium solid grey;
+	  border-radius: 0 0 25px 25px;
+	  margin: 2% auto;
+	  
+	  
+	  
+}
+	#top_line{
+		color: red;
+	}
+	#outer_display_window{
+	height: 60px;
+	width: 300px;	
+	margin: 50px 0 20px 10px;
+	background-color: #797a7c;
+	border: 5px white;
+
+}
+
+	#inner_display_window{
+		height: 40px;
+		width: 280px;	
+		margin: 10px 0 auto 10px;
+		position: absolute;
+		font-size: 25px;
+		line-height: 40px;
+		color: blue;	
+		text-align: right;
+		background-color: #b3b6bc;
+		border-radius: 10px;
+		white-space: normal;
+	}
+	.brand{
+		margin: 0px 0px 10px 10px;	
+		font-size: 90%;
+		color: white;
+	}
+	.model{
+		margin: 0px 0px 0px 200px;
+		font-size: 180%;
+		font-family: 'Suez One', serif;
+		color: white;
+	}
+	#solar_window{
+		height: 40px;
+		width: 146px;
+		position: absolute;
+		background-color: #09090a;
+		border: 1px solid #797a7c;
+		opacity: .3;
+		margin: 10px 0px 0px 10px;
+	}
+		.cell_one{
+		position:absolute;
+		height: 30px;
+		width: 30px;
+		background-color: white;
+		margin: 5px 0px 5px 10px;
+		
+		}
+		.cell_one.animated{
+			animation: solarlights .6s ease .2s;
+   			
+		}
+		.cell_one.animatedback{
+			animation: solarlights 1s ease .5s;
+
+		}	
+		.cell_two{
+		position: absolute;
+		height: 30px;
+		width: 30px;
+		background-color: white;
+		margin: 5px 0px 5px 42px;
+		
+		
+		}
+
+		.cell_two.animatedtwo{
+			animation: solarlights .8s ease .3s;
+
+		}	
+
+		.cell_two.animatedbacktwo{
+			animation: solarlights .9s ease .4s;
+
+		}	
+			
+		.cell_three{
+			position: absolute;
+		height: 30px;
+		width: 30px;
+		background-color: white;
+		margin: 5px 0px 5px 74px;
+		
+		}
+		.cell_three.animatedthree{
+			animation: solarlights .9s ease .4s;
+		}
+		.cell_three.animatedbackthree{
+			animation: solarlights .8s ease .3s;
+
+		}
+		.cell_four{
+			position: absolute;
+		height: 30px;
+		width: 30px;
+		background-color: white;
+		margin: 5px 10px 5px 106px;
+		
+		}	
+		
+		.cell_four.animatedfour{
+			animation: solarlights 1s ease .5s;
+		}
+		.cell_four.animatedbackfour{
+			animation: solarlights .6s ease .2s;
+
+		}
+ 		@keyframes solarlights{
+
+		0% {background-color: white;}
+		50%{background-color: blue;}
+		100%{background-color: white;}
+
+		}
+	#buttons_frame{
+		height:340px;
+		width: 300px;
+		position: absolute;
+		background-color: black;
+		opacity: .3;
+		border: 1px solid #797a7c ;
+		border-radius: 7px;
+		margin: 30px 0px 0px 10px;
+	}
+	#AC_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 10px 15px 0px 7.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #b5b6b7;
+
+	}
+	#CE_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 10px 15px 0px 82.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #b5b6b7;
+
+	}
+		#Division_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 10px 15px 0px 157.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 140%;
+		box-shadow: 0 2px #b5b6b7;
+
+	}
+		#Multiplication_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 10px 7.5px 0px 232.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 160%;
+		box-shadow: 0 2px #b5b6b7;
+
+	}
+
+		#Seven_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 77.5px 15px 0px 7.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		
+		}
+		#Eight_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 77.5px 15px 0px 82.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Nine_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 77.5px 15px 0px 157.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Subtract_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 77.5px 7.5px 0px 232.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 180%;
+		box-shadow: 0 2px #b5b6b7;
+
+		}
+		#Four_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 145px 15px 0px 7.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Five_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 145px 15px 0px 82.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Six_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 145px 15px 0px 157.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Addition_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 145px 7.5px 0px 232.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 140%;
+		box-shadow: 0 2px #b5b6b7;
+		}
+		#One_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 212.5px 15px 0px 7.5px;
+		background-color: #f7f8f9;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Two_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 212.5px 15px 0px 82.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Three_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 212.5px 15px 0px 157.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Equal_button{
+		height: 117.5px;
+		width: 60px;
+		position: absolute;
+		margin: 212.5px 7.5px 0px 232.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 140%;
+		box-shadow: 0 2px #b5b6b7;
+		}
+		#OnOff_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 280px 15px 0px 7.5px;
+		background-color: red;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 80%;
+		box-shadow: 0 2px #b5b6b7;
+		
+		}
+
+		#Subtract_button:hover, #Addition_button:hover, #Equal_button:hover, #CE_button:hover, #Division_button:hover, #Multiplication_button:hover, #AC_button:hover, #OnOff_button:hover {
+
+			background-color: #f24141;
+
+		}
+
+		#Decimal_button:hover, #Zero_button:hover, #One_button:hover, #Two_button:hover, #Three_button:hover, #Four_button:hover, #Five_button:hover, #Six_button:hover, #Seven_button:hover, #Eight_button:hover, #Nine_button:hover{
+			background-color: #dcdde2;
+		}
+
+		input:active {
+ 		 background-color:#f24141;
+  		box-shadow: 0 3px #666;
+  		transform: translateY(2px);
+		}
+		
+		#Zero_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 280px 15px 0px 82.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#Decimal_button{
+		height: 50px;
+		width: 60px;
+		position: absolute;
+		margin: 280px 15px 0px 157.5px;
+		background-color: white;
+		border-radius: 10px;
+		font-family: 'Ubuntu', sans-serif;
+		font-size: 120%;
+		box-shadow: 0 2px #999;
+		}
+		#footer{
+			background: #202123;
+			width: 320px;
+			height: 100px;
+			margin: 5% auto;
+		}

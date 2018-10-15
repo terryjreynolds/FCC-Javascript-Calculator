@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<html>
+
+<head>
+    <title>Javascript Calculator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js">
+    <link rel="stylesheet" type="text/css" href="C:\Users\reyno\Google Drive\Sublime Coding Projects\FreeCodeCamp\Javascript_Calculator\css\style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Bigshot+One|Peralta|Suez+One|Ubuntu|Orbitron" rel="stylesheet">
+
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+
+    <div id="calculator_frame">
+
+        <div id="outer_display_window">
+            <div id="inner_display_window">
+
+            </div>
+
+        </div>
+        <h2 class="brand">TERRY INSTRUMENTS</h2>
+        <div id="solar_window">
+            <div class="cell_one" id="cell_one">
+            </div>
+            <div class="cell_two" id="cell_two">
+            </div>
+            <div class="cell_three" id="cell_three">
+            </div>
+            <div class="cell_four" id="cell_four">
+            </div>
+        </div>
+        <h1 class="model">TI-109</h1>
+
+        <div id="buttons_frame">
+            <!-- first row -->
+            <input type="button" value="AC" id="AC_button">
+            <input type="button" value="CE" id="CE_button">
+            <input type="button" value="÷" id="Division_button">
+            <input type="button" value="×" id="Multiplication_button">
+            <!-- second row -->
+            <input type="button" value="7" id="Seven_button">
+            <input type="button" value="8" id="Eight_button">
+            <input type="button" value="9" id="Nine_button">
+            <input type="button" value="-" id="Subtract_button">
+
+            <!-- third row -->
+            <input type="button" value="4" id="Four_button">
+            <input type="button" value="5" id="Five_button">
+            <input type="button" value="6" id="Six_button">
+            <input type="button" value="+" id="Addition_button">
+
+            <!-- fourth row -->
+            <input type="button" value="1" id="One_button">
+            <input type="button" value="2" id="Two_button">
+            <input type="button" value="3" id="Three_button">
+            <input type="button" value="=" id="Equal_button">
+
+            <!-- fifth row but only 3 buttons-->
+            <input type="button" value="ON/OFF" id="OnOff_button">
+            <input type="button" value="0" id="Zero_button">
+            <input type="button" value="." id="Decimal_button">
+
+        </div>
+    </div>
+
+    <div id="footer">
+        <footer style="text-align: center; color: white; font-size: 100%;">
+            <h7>Javascript Calculator designed and coded by <a href='https://codepen.io/beowulfskin/full/jmEyjv/'
+                    target="_blank" style="color:red">Terry Reynolds</a>, 2017.<h7>
+
+        </footer>
+    </div>
+
+
+    <script>
+
+        //global variables
+        var onOrOff = "off";
+        var aNum = "";
+        var op = "";
+        var bNum = "";
+        var answer = "";
+
+
+        //a generic function for handling number presses
+        function pressANumber(numberPressed) {
+
+            // if the calculator is off, don't assign number to a variable and don't
+            //display anything on screen
+            if (onOrOff == "off") {
+                $("#inner_display_window").text("");
+
+                //if nothing has been entered yet, just assign the number pressed to aNum
+            } else if (aNum == "" && op == "" && bNum == "") {
+                aNum = numberPressed;
+                $("#inner_display_window").text(aNum);
+
+                // if an op has not been pressed yet, concatenate the pressed number with aNum and 
+                //display on screen
+            } else if (aNum != "" && op == "" && bNum == "") {
+                //this section helps decide when to scale down the font to fit large 
+                //numbers
+                if (aNum.length <= 12) {
+                    aNum = aNum + numberPressed;
+                    $("#inner_display_window").text(aNum);
+                } else if (aNum.length > 12 && aNum.length < 21) {
+                    $("#inner_display_window").css({ "font-size": "25px" });
+                    aNum = aNum + numberPressed;
+                    $("#inner_display_window").text(aNum);
+                } else if (aNum.length >= 21) {
+                    $("#inner_display_window").css({ "font-size": "25px" });
+                    $("#inner_display_window").text(aNum);
+                }
+
+                // if aNum is full, an op has been pressed, and bNum is empty, assign the number to bNum and display on screen 
+            } else if (aNum != "" && op !== "" && bNum == "") {
+                bNum = numberPressed;
+                $("#inner_display_window").text(bNum);
+                //if all variables are filled, concat number to bNum
+            } else if (aNum != "" && op !== "" && bNum != "") {
+                //this section helps decide when to scale down the font to fit large 
+                //numbers
+                if (bNum.length <= 12) {
+                    bNum = bNum + numberPressed;
+                    $("#inner_display_window").text(bNum);
+                } else if (bNum.length > 12 && bNum.length < 21) {
+                    $("#inner_display_window").css({ "font-size": "25px" });
+                    bNum = bNum + numberPressed;
+                    $("#inner_display_window").text(bNum);
+                } else if (bNum.length >= 21) {
+                    $("#inner_display_window").css({ "font-size": "25px" });
+                    $("#inner_display_window").text(bNum);
+                }
+            }
+
+        }// end of the generic number press function
+
+        //a function to call on equal or op press to string the numbers and evaluate
+        //to an arithmetic answer in cases where all variables are filled
+        function calculate() {
+
+            var userNumbers = aNum + op + bNum;
+            answer = eval(userNumbers);
+            var cleanAnswer = scrubAnswer(answer);
+            aNum = cleanAnswer;
+            return cleanAnswer;
+
+        }
+
+        //a function to evaluate strings that only have aNum and an op filled
+        function calculatePart() {
+
+            bNum = aNum;
+            var userNumbers2 = aNum + op + bNum;
+            answer = eval(userNumbers2);
+            var cleanAnswer = scrubAnswer(answer);
+            aNum = cleanAnswer;
+            return cleanAnswer;
+        }
+
+        //This function scrubs each answer to ensure it will fit in the display window 
+        function scrubAnswer(integer) {
+
+            var integerStringed = integer.toString();
+            var makeArray = integerStringed.split("");
+            var doesItIncludeE = makeArray.includes("e");
+            if (makeArray.length > 13 || doesItIncludeE == true) {
+                $("#inner_display_window").css({ "font-size": "25px" });
+                var scrubbedAnswer = makeArray.join("");
+                return scrubbedAnswer;
+            } else {
+                scrubbedAnswer = makeArray.join("");
+                return scrubbedAnswer;
+            }
+        }//end of scrubAnswer function
+
+        //a function to handle op key presses
+        function opPress(operationPressed) {
+
+            // if the calculator is off, don't input the pressed operation.
+            if (onOrOff == "off") {
+                $("#inner_display_window").text("");
+                //if all variables empty, set text to 0 
+            } else if (aNum == "" && op == "" && bNum == "") {
+                $("#inner_display_window").text("0");
+                //if a number has been pressed, set the op to the operation pressed
+            } else if (aNum != "" && op == "" && bNum == "") {
+                op = operationPressed;
+                //if aNum and an op are filled, and another op is pressed, do 
+                //nothing except display aNum on screen
+            } else if (aNum != "" && op != "" && bNum == "") {
+                $("#inner_display_window").text(aNum);
+                //if all variables are filled and op is pressed, treat it as equals sign but reset variables 
+            } else if (aNum != "" && op != "" && bNum != "" && answer == "") {
+                answer = calculate();
+                $("#inner_display_window").text(answer);
+                op = operationPressed;
+                bNum = "";
+                answer = "";
+                //if op is pressed after equals already used (ie: answer is filled), change state to get ready for 
+                //filling out bNum 
+            } else if (aNum != "" && op != "" && bNum != "" && answer != "") {
+                answer = ""
+                op = operationPressed;
+                bNum = "";
+            }
+
+        }//end of opPress function
+
+
+        //getting buttons from the DOM
+        var decimalButton = document.getElementById("Decimal_button");
+        var zeroButton = document.getElementById("Zero_button");
+        var oneButton = document.getElementById("One_button");
+        var twoButton = document.getElementById("Two_button");
+        var threeButton = document.getElementById("Three_button");
+        var fourButton = document.getElementById("Four_button");
+        var fiveButton = document.getElementById("Five_button");
+        var sixButton = document.getElementById("Six_button");
+        var sevenButton = document.getElementById("Seven_button");
+        var eightButton = document.getElementById("Eight_button");
+        var nineButton = document.getElementById("Nine_button");
+        var onOffButton = document.getElementById("OnOff_button");
+        var CEbutton = document.getElementById("CE_button");
+        var ACbutton = document.getElementById("AC_button");
+        var equalButton = document.getElementById("Equal_button");
+        var addButton = document.getElementById("Addition_button");
+        var subtractButton = document.getElementById("Subtract_button");
+        var multiplyButton = document.getElementById("Multiplication_button");
+        var divideButton = document.getElementById("Division_button");
+
+        //functions assigned to buttons
+        decimalButton.onclick = function () {
+            pressANumber(".");
+        }
+        zeroButton.onclick = function () {
+            pressANumber("0");
+        }
+        oneButton.onclick = function () {
+            pressANumber("1");
+        }
+        twoButton.onclick = function () {
+            pressANumber("2");
+        }
+        threeButton.onclick = function () {
+            pressANumber("3");
+        }
+        fourButton.onclick = function () {
+            pressANumber("4");
+        }
+        fiveButton.onclick = function () {
+            pressANumber("5");
+        }
+        sixButton.onclick = function () {
+            pressANumber("6");
+        }
+        sevenButton.onclick = function () {
+            pressANumber("7");
+        }
+        eightButton.onclick = function () {
+            pressANumber("8");
+        }
+        nineButton.onclick = function () {
+            pressANumber("9");
+        }
+
+
+        equalButton.onclick = function () {
+            equalSign();
+        }
+
+        //function to handle equal sign presses
+        function equalSign() {
+            // if the calculator is off, don't input the equal sign.
+            if (onOrOff == "off") {
+                $("#inner_display_window").text("");
+                //when screen only has one number and equal button is pushed, set no variables and
+                //display nothing on the screen
+            } else if (aNum != "" && bNum == "" && op == "") {
+                $("#inner_display_window").text("");
+                //when a number has been pressed and an op, if equals is pressed, call the calculatePart function
+                //this causes the repeating of the op with the number on multiple equal button presses
+            } else if (aNum !== "" && op !== "" && bNum == "") {
+
+                answer = calculatePart();
+                $("#inner_display_window").text(answer);
+                //$("#inner_display_window").css({"font-size": "40px"});
+
+                //if all variables are filled, just evaluate and display result on screen
+            } else if (aNum !== "" && op !== "" && bNum != "") {
+                answer = calculate();
+                $("#inner_display_window").text(answer);
+
+            }
+        }//end of equals sign function
+
+
+        //assign op buttons to functions
+        equalButton.onclick = function () {
+            equalSign();
+        }
+        addButton.onclick = function () {
+            opPress("+");
+        }
+        subtractButton.onclick = function () {
+            opPress("-");
+        }
+        multiplyButton.onclick = function () {
+            opPress("*");
+        }
+        divideButton.onclick = function () {
+            opPress("/");
+        }
+
+
+        //routine for turning calculator on and off using onoff button
+        onOffButton.onclick = function () {
+
+            //turn calculator OFF
+            if (onOrOff == "on") {
+
+                aNum = "";
+                op = "";
+                bNum = "";
+                answer = "";
+
+                setTimeout(function set_to_nothing() { $("#inner_display_window").text("") }, 800);
+
+                $(".cell_four").addClass('animatedbackfour');
+                $(".cell_three").addClass('animatedbackthree');
+                $(".cell_two").addClass('animatedbacktwo');
+                $(".cell_one").addClass('animatedback');
+
+                setTimeout(function () {
+                    $(".cell_four").removeClass('animatedbackfour');
+                }, 600);
+                setTimeout(function () {
+                    $(".cell_three").removeClass('animatedbackthree');
+                }, 600);
+                setTimeout(function () {
+                    $(".cell_two").removeClass('animatedbacktwo');
+                }, 800);
+                setTimeout(function () {
+                    $(".cell_one").removeClass('animatedback');
+                }, 1000);
+                $("#inner_display_window").css({ "background-color": "#b3b6bc" });
+                onOrOff = "off";
+
+                //turn calculator ON
+            } else {
+                $("#inner_display_window").css({ "font-size": "40px" });
+                $("#inner_display_window").css({ "background-color": "#04f9dd" });
+
+                aNum = "";
+                op = "";
+                bNum = "";
+                answer = "";
+                setTimeout(function set_to_zero() { $("#inner_display_window").text("0") }, 1000);
+
+                $(".cell_one").addClass('animated');
+                $(".cell_two").addClass('animatedtwo');
+                $(".cell_three").addClass('animatedthree');
+                $(".cell_four").addClass('animatedfour');
+
+                setTimeout(function () {
+                    $(".cell_one").removeClass('animated');
+                }, 600);
+                setTimeout(function () {
+                    $(".cell_two").removeClass('animatedtwo');
+                }, 600);
+                setTimeout(function () {
+                    $(".cell_three").removeClass('animatedthree');
+                }, 800);
+                setTimeout(function () {
+                    $(".cell_four").removeClass('animatedfour');
+                }, 1000);
+
+
+                onOrOff = "on";
+
+            }
+
+        }// end of onOffButton function
+
+
+        // All Clear button to reset variables and the display 
+        ACbutton.onclick = function () {
+            if (onOrOff == "off") {
+                $("#inner_display_window").text("");
+            } else {
+                $("#inner_display_window").css({ "font-size": "40px" });
+                aNum = "";
+                op = "";
+                bNum = "";
+                answer = "";
+                $("#inner_display_window").text("0");
+
+            }
+        }//end of All Clear function
+
+        //function to clear an entry
+        CEbutton.onclick = function () {
+            //according to special cases, variously empty the display and reset variables as needed
+            if (onOrOff == "off") {
+                $("#inner_display_window").text("");
+            } else if (aNum != "" && op == "" && bNum == "") {
+                aNum = "";
+                $("#inner_display_window").text("0");
+            } else if (aNum != "" && op != "" && bNum == "") {
+                $("#inner_display_window").text("0");
+            } else if (aNum != "" && op != "" && bNum != "" && answer == "") {
+                bNum = "";
+                $("#inner_display_window").text("0");
+            } else if (aNum != "" && op != "" && bNum != "" && answer != "") {
+                aNum = "";
+                op = "";
+                bNum = "";
+                answer = "";
+                $("#inner_display_window").text("0");
+                $("#inner_display_window").css({ "font-size": "40px" });
+            }
+        }//end of CE function
+
+
+
+    </script>
+</body>
+
+</html>
